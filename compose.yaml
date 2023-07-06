@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  api:
+    container_name: "fastapi-api"
+    image: "fastapi-api"
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    ports:
+      - "8005:8005"
+    command: uvicorn app.main:app --port=8005 --host=0.0.0.0 --reload
+
+  nginx:
+    container_name: "nginx-fastapi"
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    image: "nginx-latest"
+    restart: always
+    ports:
+      - "85:80"
+    depends_on:
+      - api
