@@ -7,9 +7,11 @@ services:
     build:
       context: .
       dockerfile: app/Dockerfile
+    restart: always
     ports:
       - "8005:8005"
-    command: uvicorn app.main:app --port=8005 --host=0.0.0.0 --reload
+    command: uvicorn app.main:app --port 8005 --host 0.0.0.0 --reload
+
 
   nginx:
     container_name: "nginx-fastapi"
