@@ -1,0 +1,19 @@
+name: Check Build
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: Check-build
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build the docker-compose stack
+        run: docker-compose up --build -d
+      - name: Check running containers
+        run: docker ps -a
