@@ -57,5 +57,5 @@ def test_should_return_error_if_destination_language_language_is_not_supported(
     assert (
         response.json()["detail"][0]["msg"]
         == "value is not a valid enumeration member; permitted:"
-           " 'English', 'French', 'German', 'Romanian'"
+        " 'English', 'French', 'German', 'Romanian'"
     )
